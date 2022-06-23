@@ -5,13 +5,13 @@
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
    
 
-    $msg = "";
     if(fnDeleteUsuario($id)) {
-        $msg = "Sucesso ao gravar";
+        $msg = "Sucesso ao excluir";
     } else {
-        $msg = "Falha na gravação";
+        $msg = "Falha na exclusão";
     }
-
-    # redirect para a página de formulário
-    header("location: lista-de-otaku.php?notify={$msg}");
+    $page = "lista-de-otaku.php";
+    setcookie('notify',$msg,time() +10,"/sga/{$page}",'localhost');
+    header("location: {$page}");
     exit;
+    

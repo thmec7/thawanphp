@@ -13,7 +13,7 @@
   <body>
     <div class="col-6 offset-3">
     <fieldset>
-            <legend>Login SGA</legend>
+            <legend>Login SGO</legend>
             <form action="loginSistema.php" method="post" class="form">
                 <div class="mb-3 form-group">
                     <label for="emailId" class="form-label">E-mail</label>

@@ -8,13 +8,13 @@
     $idade = filter_input(INPUT_POST, 'idade', FILTER_SANITIZE_NUMBER_INT);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
-    $msg = "";
-    if(fnAddUsuario($nome, $animepreferido, $idade, $email)) {
+        if(fnAddUsuario($nome, $animepreferido, $idade, $email)) {
         $msg = "Sucesso ao gravar";
     } else {
         $msg = "Falha na gravação";
     }
-
-    # redirect para a página de formulário
-    header("location: formulario-cadastro-otaku.php?notify={$msg}");
+    $page = "formulario-cadastro-otaku.php";
+    setcookie('notify',$msg, time() + 10,"/sga/{$page}", 'localhost');
+    
+    header("location: {$page}");
     exit;

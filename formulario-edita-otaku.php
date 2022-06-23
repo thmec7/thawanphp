@@ -1,9 +1,12 @@
 <?php
     include('config.php'); 
-
     require_once('repository/OtakuRepository.php'); 
-    $notificacao = filter_input(INPUT_GET, 'notify', FILTER_SANITIZE_SPECIAL_CHARS);
-    $id= filter_input(INPUT_GET,'id',FILTER_SANITIZE_NUMBER_INT);
+
+      if (isset($_SESSION ['id'])) {
+        $id = $_SESSION ['id'];
+      } else{
+        $id = filter_input(INPUT_GET,'id',FILTER_SANITIZE_NUMBER_INT);
+      }
     $usuario =fnLocalizaOtakuPorId($id);
 ?>
 <!doctype html>
@@ -21,7 +24,7 @@
             <legend>Edição de Otaku</legend>
             <form action="editaOtaku.php" method="post" class="form">
             <div> 
-            <input type="hidden" name="idOtaku" id="otakuId"value="<?= $aluno->id ?>">
+            <input type="hidden" name="idOtaku" id="otakuId"value="<?= $usuario->id ?>">
             </div>
                 <div class="mb-3 form-group">
                     <label for="nomeId" class="form-label">Nome</label>
@@ -44,7 +47,7 @@
                     <div id="helperEmail" class="form-text">Informe o e-mail</div>
                 </div>
                 <button type="submit" class="btn btn-dark">Enviar</button>
-                <div id="notify" class="form-text text-capitalize fs-4"><?= $notificacao ?></div>
+                <div id="notify" class="form-text text-capitalize fs-4"><?=  isset($_COOKIE['notify']) ? $_COOKIE['notify'] : '' ?></div>
             </form>
         </fieldset>
     </div>

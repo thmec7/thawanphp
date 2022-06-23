@@ -26,7 +26,7 @@
       </ul>
       <form id="formSearchName" class="d-flex" role="search" method="post" action="localiza-otaku.php">
         <input id="searchName" class="form-control me-2" name="nomeOtaku" type="search" placeholder="Informe o nome" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
     </div>
   </div>

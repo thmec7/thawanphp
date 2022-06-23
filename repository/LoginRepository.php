@@ -4,11 +4,11 @@
 
     # CRUD
 
-    function fnAddUsuario($nome, $animepreferido, $idade) {
+    function fnAddUsuario($nome, $animepreferido, $idade, $email) {
         $con = getConnection();
         
         # SQL Injection
-        $sql = "insert into usuario (nome, animepreferido, idade, email) values (:pNome, :pAnimepreferido, :pIdade,:pEmail)";
+        $sql = "insert into usuario (nome, animepreferido, idade, email) values (:pNome, :pAnimepreferido, :pIdade, :pEmail)";
         
         $stmt = $con->prepare($sql);
         $stmt->bindParam(":pNome", $nome); 
@@ -32,7 +32,7 @@
     }
     function fnLocalizaOtakuPorId($id) {
         $con = getConnection();
-        $sql = "select* from usuario where id = :pID";
+        $sql = "select * from usuario where id = :pID";
         $stmt = $con->prepare($sql);
         $stmt->bindParam(":pID",$id);
      
@@ -41,12 +41,27 @@ if($stmt->execute()) {
 }
 return null;
 
+function fnLocalizaOtakuPorNome($nome) {
+    $con = getConnection();
+
+    $sql = "select * from usuario where nome like :pNome limit 20";
+
+    $stmt = $con->prepare($sql);
+
+    $stmt->bindValue(":pNome", "%{$nome}%");
+
+    if($stmt->execute()) {
+        $stmt->setFetchMode(PDO::FETCH_OBJ);
+        return $stmt->fetchAll();
     }
-    function fnUpdateUsuario($id,$nome, $animepreferido, $idade) {
+}
+
+    }
+    function fnUpdateUsuario($id,$nome, $animepreferido, $idade, $email) {
         $con = getConnection();
         
 
-        $sql = "update usuario set nome = :pNome, animepreferido = :pAnimepreferido, idade = :pIdade, email = pEmail where id= :pID";
+        $sql = "update usuario set nome = :pNome, animepreferido = :pAnimepreferido, idade = :pIdade, email = :pEmail where id= :pID";
         
         $stmt = $con->prepare($sql);
         $stmt->bindParam(":pID", $id);

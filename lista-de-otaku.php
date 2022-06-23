@@ -2,7 +2,6 @@
  include('config.php'); 
 
 require_once('repository/OtakuRepository.php');
-$notificacao = filter_input(INPUT_GET, 'notify', FILTER_SANITIZE_SPECIAL_CHARS);
 $nome = filter_input(INPUT_GET, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
 ?>
 <!doctype html>
@@ -29,7 +28,7 @@ $nome = filter_input(INPUT_GET, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
                </tr>
             </thead>
              <tbody>
-                 <?php foreach(fnListOtaku() as $usuario): ?>
+                 <?php foreach(fnLocalizaOtakuPorNome($nome) as $usuario): ?>
                 <tr>
                 <td><?= $usuario->id ?></td>
                 <td><?= $usuario->nome ?></td>
@@ -45,7 +44,7 @@ $nome = filter_input(INPUT_GET, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
              <?php if(isset($notificacao)) : ?>
             <tfoot>
               <tr>
-                <td colspan="8"><?= $notificacao ?></td>
+                <td colspan="8"><?= $_COOKIE['notify'] ?></td>
 
               </tr>
             </tfoot>
