@@ -11,8 +11,7 @@
     if(!array_key_exists('login', $_SESSION) || empty(isset($_SESSION['login'])))
     {
         $page = "errorPage.php";
-        setcookie('notify', $msg, time() +10,"/sga/{$page}",'localhost');
-        
+        setcookie('notify', $msg, time() +10, "/sga/{$page}", 'localhost'); 
         header("location: {$page}");
         exit;
         

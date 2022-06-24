@@ -2,12 +2,8 @@
     include('config.php'); 
     require_once('repository/OtakuRepository.php'); 
 
-      if (isset($_SESSION ['id'])) {
-        $id = $_SESSION ['id'];
-      } else{
-        $id = filter_input(INPUT_GET,'id',FILTER_SANITIZE_NUMBER_INT);
-      }
-    $usuario =fnLocalizaOtakuPorId($id);
+     $id = $_SESSION['id'];
+    $usuario = fnLocalizaOtakuPorId($id);
 ?>
 <!doctype html>
 <html lang="pt_BR">
@@ -38,7 +34,7 @@
                 </div>
                 <div class="mb-3 form-group">
                     <label for="idadeId" class="form-label">idade</label>
-                    <input type="text" name="idade" id="idadeId" class="form-control" placeholder="Informe a sua idade" value="<?= $usuario->idade ?>">
+                    <input type="number" name="idade" id="idadeId" class="form-control" placeholder="Informe a sua idade" value="<?= $usuario->idade ?>">
                     <div id="helperIdade" class="form-text">Informe a sua idade</div>
                 </div>
                 <div class="mb-3 form-group">
@@ -47,7 +43,7 @@
                     <div id="helperEmail" class="form-text">Informe o e-mail</div>
                 </div>
                 <button type="submit" class="btn btn-dark">Enviar</button>
-                <div id="notify" class="form-text text-capitalize fs-4"><?=  isset($_COOKIE['notify']) ? $_COOKIE['notify'] : '' ?></div>
+                <div id="notify" class="form-text text-capitalize fs-4"><?= isset($_COOKIE['notify']) ? $_COOKIE['notify'] : '' ?></div>
             </form>
         </fieldset>
     </div>

@@ -36,8 +36,8 @@ $nome = filter_input(INPUT_GET, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
                 <td><?= $usuario->idade ?></td>
                 <td><?= $usuario->email ?></td> 
                 <td><?= $usuario->created_at ?></td>               
-                <td><a href="formulario-edita-otaku.php?id=<?= $usuario->id ?>">Editar</a></td>
-                <td><a onclick="return confirm('Deseja realmente Excluir');"href="excluirOtaku.php?id=<?= $usuario->id ?>">Excluir</a></td>
+                <td><a href= "#" onclick="gerirUsuario(<?= $usuario->id ?>, 'edit');">Editar</a></td>
+                <td><a onclick="return confirm('Deseja realmente Excluir') ? gerirUsuario(<?= $usuario->id ?>, 'del') : '';" href="#">Excluir</a></td>
                 </tr>
                 <?php endforeach; ?>
              </tbody>
@@ -45,12 +45,41 @@ $nome = filter_input(INPUT_GET, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
             <tfoot>
               <tr>
                 <td colspan="8"><?= $_COOKIE['notify'] ?></td>
-
               </tr>
             </tfoot>
             <?php endif; ?>
        </table>
     </div>
     <?php include("rodape.php"); ?>
+    <script>
+window.post = (data) => {
+  return fetch(
+    'set-session.php', 
+    {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    }
+  )
+.then(response => {
+ console.log(`Requisição completa! Resposta:`,response);
+});
+}
+
+
+
+
+
+function gerirUsuario(id, action) {
+
+post({data : id});
+  url = 'excluirOtaku.php';
+  if(action === 'edit')
+  url = 'formulario-edita-otaku.php';
+
+window.location.href = url;
+ }
+
+    </script>
   </body>
 </html>

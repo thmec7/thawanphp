@@ -10,12 +10,12 @@
     
     
   
-    if($_SESSION['login'] = fnLogin($email, $senha)) {
+    if(!$_SESSION['login'] = fnLogin($email, $senha)) {
         $page = "errorPage.php";
     
         $expire = (time()+20);
         
-        setcookie('notify','Falha ao efetuar o Login', $expire, '/', 'localhost', isset($_SERVER['HTTPS']),true);
+        setcookie('notify','Falha ao efetuar o Login', $expire, '/sga/errorPage.php', 'localhost', isset($_SERVER['HTTPS']), true);
     }
     
     header("location: {$page}");

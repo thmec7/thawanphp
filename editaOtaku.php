@@ -16,8 +16,7 @@
     }
     
     $_SESSION['id'] = $id;
-    $page = "formulario-edita-otaku";
+    $page = "formulario-edita-otaku.php";
     setcookie('notify', $msg, time() +10, "/sga/{$page}",'localhost');
-    
     header("location: {$page}");
     exit;

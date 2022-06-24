@@ -17,22 +17,22 @@
             <form action="registraOtaku.php" method="post" class="form">
                 <div class="mb-3 form-group">
                     <label for="nomeId" class="form-label">Nome</label>
-                    <input type="text" name="nome" id="nomeId" class="form-control" placeholder="Informe o nome">
+                    <input type="text" name="nome" id="nomeId" class="form-control" placeholder="Informe o nome" required>
                     <div id="helperNome" class="form-text">Informe o nome completo</div>
                 </div>
                 <div class="mb-3 form-group">
                     <label for="animepreferidoId" class="form-label">Anime Preferido </label>
-                    <input type="text" name="animepreferido" id="animepreferidoId" class="form-control" placeholder="Informe o seu anime preferido">
+                    <input type="text" name="animepreferido" id="animepreferidoId" class="form-control" placeholder="Informe o seu anime preferido" required>
                     <div id="helperAnimepreferido" class="form-text">Informe o seu anime preferido</div>
                 </div>
                 <div class="mb-3 form-group">
                     <label for="idadeId" class="form-label">idade</label>
-                    <input type="text" name="idade" id="idadeId" class="form-control" placeholder="Informe a sua idade">
+                    <input type="number" name="idade" id="idadeId" class="form-control" placeholder="Informe a sua idade" required>
                     <div id="helperIdade" class="form-text">Informe a sua idade</div>
                 </div>
                 <div class="mb-3 form-group">
                     <label for="emailId" class="form-label">E-mail</label>
-                    <input type="email" name="email" id="emailId" class="form-control" placeholder="Informe o e-mail">
+                    <input type="email" name="email" id="emailId" class="form-control" placeholder="Informe o e-mail" required>
                     <div id="helperEmail" class="form-text">Informe o e-mail</div>
                 </div>
                 <button type="submit" class="btn btn-dark">Enviar</button>

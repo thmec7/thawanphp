@@ -20,7 +20,7 @@
     }
     function fnListOtaku() {
         $con = getConnection();
-        $sql = "select* from usuario";
+        $sql = "select * from usuario";
      $result = $con->query($sql);
 
      $lstOtakus = array();
@@ -30,6 +30,23 @@
      return $lstOtakus;
 
     }
+    
+    function fnLocalizaOtakuPorNome($nome) {
+        $con = getConnection();
+    
+        $sql = "select * from usuario where nome like :pNome limit 20";
+    
+        $stmt = $con->prepare($sql);
+    
+        $stmt->bindValue(":pNome", "%{$nome}%");
+    
+        if($stmt->execute()) {
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            return $stmt->fetchAll();
+        }
+    }
+
+
     function fnLocalizaOtakuPorId($id) {
         $con = getConnection();
         $sql = "select * from usuario where id = :pID";
@@ -41,27 +58,14 @@ if($stmt->execute()) {
 }
 return null;
 
-function fnLocalizaOtakuPorNome($nome) {
-    $con = getConnection();
 
-    $sql = "select * from usuario where nome like :pNome limit 20";
-
-    $stmt = $con->prepare($sql);
-
-    $stmt->bindValue(":pNome", "%{$nome}%");
-
-    if($stmt->execute()) {
-        $stmt->setFetchMode(PDO::FETCH_OBJ);
-        return $stmt->fetchAll();
-    }
-}
 
     }
     function fnUpdateUsuario($id,$nome, $animepreferido, $idade, $email) {
         $con = getConnection();
         
 
-        $sql = "update usuario set nome = :pNome, animepreferido = :pAnimepreferido, idade = :pIdade, email = :pEmail where id= :pID";
+        $sql = "update usuario set nome = :pNome, animepreferido = :pAnimepreferido, idade = :pIdade, email = :pEmail where id = :pID";
         
         $stmt = $con->prepare($sql);
         $stmt->bindParam(":pID", $id);
