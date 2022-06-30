@@ -4,14 +4,15 @@
 
     # CRUD
 
-    function fnAddUsuario($nome, $animepreferido, $idade, $email) {
+    function fnAddUsuario($nome, $foto, $animepreferido, $idade, $email) {
         $con = getConnection();
         
         # SQL Injection
-        $sql = "insert into usuario (nome, animepreferido, idade, email) values (:pNome, :pAnimepreferido, :pIdade, :pEmail)";
+        $sql = "insert into usuario (nome, foto, animepreferido, idade, email) values (:pNome, :pFoto, :pAnimepreferido, :pIdade, :pEmail)";
         
         $stmt = $con->prepare($sql);
         $stmt->bindParam(":pNome", $nome); 
+        $stmt->bindParam(":pFoto", $foto); 
         $stmt->bindParam(":pAnimepreferido", $animepreferido); 
         $stmt->bindParam(":pIdade", $idade); 
         $stmt->bindParam(":pEmail", $email);

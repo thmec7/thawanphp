@@ -19,6 +19,9 @@
         <fieldset>
             <legend>Edição de Otaku</legend>
             <form action="editaOtaku.php" method="post" class="form">
+            <div class="card col-4 offset-4 text-center">
+                    <img src="./<?= $usuario->foto ?>" class="rounded" alt="foto do usuário">
+                </div>
             <div> 
             <input type="hidden" name="idOtaku" id="otakuId"value="<?= $usuario->id ?>">
             </div>

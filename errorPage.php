@@ -1,6 +1,6 @@
 <?php
    if (!isset($_COOKIE['notify'])) {
-    header('location:index.php');
+    header('location: index.php');
     exit;
    }
 ?>
