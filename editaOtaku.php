@@ -1,6 +1,7 @@
 <?php
 
     require_once('repository/OtakuRepository.php');
+    require_once('util/base64.php');
     session_start();
 
     $id = filter_input(INPUT_POST, 'idOtaku', FILTER_SANITIZE_NUMBER_INT);
@@ -9,7 +10,9 @@
     $idade = filter_input(INPUT_POST, 'idade', FILTER_SANITIZE_NUMBER_INT);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
-    if(fnUpdateUsuario($id, $nome, $animepreferido, $idade, $email)) {
+    $foto = converterBase64($_FILES['foto']);
+
+    if(fnUpdateUsuario($id, $nome, $foto, $animepreferido, $idade, $email)) {
         $msg = "Sucesso ao gravar";
     } else {
         $msg = "Falha na gravação";

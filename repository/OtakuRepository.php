@@ -62,15 +62,16 @@ return null;
 
 
     }
-    function fnUpdateUsuario($id,$nome, $animepreferido, $idade, $email) {
+    function fnUpdateUsuario($id, $nome, $foto, $animepreferido, $idade, $email) {
         $con = getConnection();
         
 
-        $sql = "update usuario set nome = :pNome, animepreferido = :pAnimepreferido, idade = :pIdade, email = :pEmail where id = :pID";
+        $sql = "update usuario set nome = :pNome, foto = pFoto, animepreferido = :pAnimepreferido, idade = :pIdade, email = :pEmail where id = :pID";
         
         $stmt = $con->prepare($sql);
         $stmt->bindParam(":pID", $id);
         $stmt->bindParam(":pNome", $nome); 
+        $stmt->bindParam(":pFoto", $foto);
         $stmt->bindParam(":pAnimepreferido", $animepreferido); 
         $stmt->bindParam(":pIdade", $idade); 
         $stmt->bindParam(":pEmail", $email);

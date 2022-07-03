@@ -14,6 +14,7 @@ create or replace table usuario(
 
 alter table usuario add column foto text not null default "imagens\\avatar.png" after nome;
 
+
 create or replace table login(
     id int primary key auto_increment,
     email varchar(250) not null unique,
